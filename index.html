@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xalo Software — Modern, Minimal, Practical</title>
+    <!-- Use Google Fonts for a clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the app */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            scroll-behavior: smooth; /* For smooth scrolling */
+        }
+        /* Custom color for buttons and accents */
+        .accent-color {
+            color: #00aaff;
+        }
+        .bg-accent-color {
+            background-color: #00aaff;
+        }
+        /* Animation classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Hover effect for buttons */
+        .btn-hover-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 170, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="text-white bg-[#1f1f1f]">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <!-- Company Name -->
+            <a href="#home" class="text-3xl font-bold text-white tracking-tight fade-in-up">Xalo Software</a>
+            <!-- Navigation Links -->
+            <div class="flex items-center space-x-6 mt-4 sm:mt-0">
+                <a href="#home" class="text-white hover:text-gray-300 transition-colors duration-300 fade-in-up">Home</a>
+                <a href="#about-us" class="text-white hover:text-gray-300 transition-colors duration-300 fade-in-up">About Us</a>
+                <a href="#services" class="text-white hover:text-gray-300 transition-colors duration-300 fade-in-up">Services</a>
+                <a href="#projects" class="text-white hover:text-gray-300 transition-colors duration-300 fade-in-up">Projects</a>
+                <a href="#contact" class="text-white hover:text-gray-300 transition-colors duration-300 fade-in-up">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Home Section (Hero & CTA) -->
+        <section id="home" class="py-20 md:py-32 text-center">
+            <!-- Hero -->
+            <div class="space-y-6 mb-12">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight fade-in-up">Sleek, practical, forward-thinking software</h1>
+                <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto fade-in-up">We build clean, modern software that solves real problems for real people.</p>
+            </div>
+            <!-- Call to Action -->
+            <div class="space-y-4 fade-in-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Let’s build something great together.</h2>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+                    <!-- Call/WhatsApp Button -->
+                    <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-3 px-8 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">
+                        Call/WhatsApp
+                    </a>
+                    <!-- Email Us Button -->
+                    <a href="mailto:diplovlogodesign@gmail.com" class="border border-white text-white font-semibold py-3 px-8 rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300 btn-hover-effect">
+                        Email Us
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="py-20 md:py-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">About Us</h2>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Our Story -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                    <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-accent-color">Our Story</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Xalo Software focuses on practical, future-ready solutions with sleek design and clear execution. We believe that the best software is not just functional, but also a pleasure to use.
+                    </p>
+                </div>
+                <!-- Mission -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                    <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-accent-color">Mission</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Our mission is to deliver reliable, minimal, and performant products that clients love. We're dedicated to a transparent development process and building long-lasting partnerships.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Our Services</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-color">Custom Software</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Tailored web and mobile solutions from idea to launch. We handle everything from the initial concept to deployment and ongoing support.
+                    </p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-color">UI/UX & Prototyping</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Modern, accessible interfaces with rapid iteration. We create intuitive designs that make your product stand out and feel natural.
+                    </p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-3 text-accent-color">AI Integration</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Practical AI features integrated into existing products. From machine learning models to generative AI, we bring intelligent features to your software.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Our Projects</h2>
+            <!-- Project Card -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg max-w-2xl mx-auto fade-in-up">
+                <h3 class="text-3xl font-semibold mb-4 text-accent-color">Musika</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    Offline-first mobile solution for vendors to manage inventory and sales without internet. Includes secure login, local storage, and optional cloud sync. This project demonstrates our focus on building robust solutions for real-world challenges.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-24">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Get in Touch</h2>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+                <!-- Phone & WhatsApp -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-color">Phone & WhatsApp</h3>
+                    <p class="text-lg font-mono mb-2">+263 785 629 957</p>
+                    <div class="flex space-x-4">
+                        <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-2 px-6 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">
+                            Call
+                        </a>
+                        <a href="https://wa.me/263785629957" class="border border-white text-white font-semibold py-2 px-6 rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300 btn-hover-effect">
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-color">Email</h3>
+                    <div class="space-y-2">
+                        <a href="mailto:diplovlogodesign@gmail.com" class="block text-lg font-mono text-gray-300 hover:text-white transition-colors duration-300">
+                            diplovlogodesign@gmail.com
+                        </a>
+                        <a href="mailto:xalosoftware@gmail.com" class="block text-lg font-mono text-gray-300 hover:text-white transition-colors duration-300">
+                            xalosoftware@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-center py-8 mt-12 border-t border-gray-700">
+        <p class="text-gray-400 fade-in-up">&copy; 2025 Xalo Software. All rights reserved.</p>
+    </footer>
+    
+    <!-- JavaScript for smooth scrolling and animations -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger animation when 10% of the element is visible
+        });
+
+        // Select all elements with the 'fade-in-up' class and observe them
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
