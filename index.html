@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xalo Software — Modern, Minimal, Practical</title>
     <link rel="icon" type="image/png" href="/xalo-software/logo.png">
     <link rel="apple-touch-icon" href="/xalo-software/logo.png">
-    <!-- Use Google Fonts for a clean look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for the app */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1f1f1f;
-            color: #ffffff;
-            scroll-behavior: smooth; /* For smooth scrolling */
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Custom color for buttons and accents */
-        .accent-color {
-            color: #00aaff;
-        }
-        .bg-accent-color {
-            background-color: #00aaff;
-        }
-        /* Animation classes */
+        .accent-color { color: #00aaff; }
+        .bg-accent-color { background-color: #00aaff; }
         .fade-in-up {
             opacity: 0;
             transform: translateY(20px);
@@ -37,46 +27,69 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Hover effect for buttons */
         .btn-hover-effect:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 15px rgba(0, 170, 255, 0.4);
         }
+        #theme-toggle-sun-icon {
+            display: none;
+        }
+        .dark #theme-toggle-sun-icon {
+            display: block;
+        }
+        .dark #theme-toggle-moon-icon {
+            display: none;
+        }
     </style>
+    <script>
+        // Set theme on page load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
-<body class="text-white bg-[#1f1f1f]">
+<body class="bg-gray-100 text-gray-800 dark:bg-[#1f1f1f] dark:text-gray-200">
 
     <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-sm shadow-lg">
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md dark:shadow-lg">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
+            <div class="flex justify-between items-center py-3">
                 <!-- Company Name & Logo -->
                 <a href="#home" class="flex items-center space-x-2">
                     <img src="logo.png" alt="Xalo Software Logo" class="h-8 w-8">
-                    <span class="text-3xl font-bold text-white tracking-tight">Xalo Software</span>
+                    <span class="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Xalo Software</span>
                 </a>
-                <!-- Hamburger Button (Mobile) -->
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <div class="flex items-center">
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">Home</a>
+                        <a href="#about-us" class="text-gray-700 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">About Us</a>
+                        <a href="#services" class="text-gray-700 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">Services</a>
+                        <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">Projects</a>
+                        <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">Contact</a>
+                    </div>
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5 ml-4">
+                        <svg id="theme-toggle-moon-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-sun-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z"></path></svg>
                     </button>
-                </div>
-                <!-- Desktop Navigation Links -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="text-white hover:text-gray-300 transition-colors duration-300">Home</a>
-                    <a href="#about-us" class="text-white hover:text-gray-300 transition-colors duration-300">About Us</a>
-                    <a href="#services" class="text-white hover:text-gray-300 transition-colors duration-300">Services</a>
-                    <a href="#projects" class="text-white hover:text-gray-300 transition-colors duration-300">Projects</a>
-                    <a href="#contact" class="text-white hover:text-gray-300 transition-colors duration-300">Contact</a>
+                    <!-- Hamburger Button (Mobile) -->
+                    <div class="md:hidden ml-2">
+                        <button id="menu-btn" class="text-gray-800 dark:text-white focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- Mobile Menu -->
             <div id="menu" class="hidden md:hidden pb-4">
-                <a href="#home" class="block py-2 px-4 text-sm text-white hover:bg-gray-700">Home</a>
-                <a href="#about-us" class="block py-2 px-4 text-sm text-white hover:bg-gray-700">About Us</a>
-                <a href="#services" class="block py-2 px-4 text-sm text-white hover:bg-gray-700">Services</a>
-                <a href="#projects" class="block py-2 px-4 text-sm text-white hover:bg-gray-700">Projects</a>
-                <a href="#contact" class="block py-2 px-4 text-sm text-white hover:bg-gray-700">Contact</a>
+                <a href="#home" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">Home</a>
+                <a href="#about-us" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">About Us</a>
+                <a href="#services" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">Services</a>
+                <a href="#projects" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">Projects</a>
+                <a href="#contact" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">Contact</a>
             </div>
         </div>
     </nav>
@@ -85,86 +98,60 @@
 
         <!-- Home Section (Hero & CTA) -->
         <section id="home" class="py-20 md:py-32 text-center">
-            <!-- Hero -->
             <div class="space-y-6 mb-12">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight fade-in-up">Sleek, practical, forward-thinking software</h1>
-                <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto fade-in-up">We build clean, modern software that solves real problems for real people.</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight fade-in-up">Sleek, practical, forward-thinking software</h1>
+                <p class="text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto fade-in-up">We build clean, modern software that solves real problems for real people.</p>
             </div>
-            <!-- Call to Action -->
             <div class="space-y-4 fade-in-up">
-                <h2 class="text-2xl md:text-3xl font-bold text-white">Let’s build something great together.</h2>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Let’s build something great together.</h2>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
-                    <!-- Call/WhatsApp Button -->
-                    <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-3 px-8 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">
-                        Call/WhatsApp
-                    </a>
-                    <!-- Email Us Button -->
-                    <a href="mailto:diplovlogodesign@gmail.com" class="border border-white text-white font-semibold py-3 px-8 rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300 btn-hover-effect">
-                        Email Us
-                    </a>
+                    <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-3 px-8 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">Call/WhatsApp</a>
+                    <a href="mailto:diplovlogodesign@gmail.com" class="border border-gray-400 dark:border-white text-gray-800 dark:text-white font-semibold py-3 px-8 rounded-xl hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 btn-hover-effect">Email Us</a>
                 </div>
             </div>
         </section>
 
         <!-- About Us Section -->
         <section id="about-us" class="py-20 md:py-24">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">About Us</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white fade-in-up">About Us</h2>
             <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-                <!-- Our Story -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
                     <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-accent-color">Our Story</h3>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        Xalo Software focuses on practical, future-ready solutions with sleek design and clear execution. We believe that the best software is not just functional, but also a pleasure to use.
-                    </p>
-                    <p class="text-gray-400 italic border-l-4 border-accent-color pl-4">
-                        We build functional, minimalistic, offline-first mobile apps.
-                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Xalo Software focuses on practical, future-ready solutions with sleek design and clear execution. We believe that the best software is not just functional, but also a pleasure to use.</p>
+                    <p class="text-gray-500 dark:text-gray-400 italic border-l-4 border-accent-color pl-4">We build functional, minimalistic, offline-first mobile apps.</p>
                 </div>
-                <!-- Mission -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
                     <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-accent-color">Mission</h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Our mission is to deliver reliable, minimal, and performant products that clients love. We're dedicated to a transparent development process and building long-lasting partnerships.
-                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Our mission is to deliver reliable, minimal, and performant products that clients love. We're dedicated to a transparent development process and building long-lasting partnerships.</p>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
         <section id="services" class="py-20 md:py-24">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Our Services</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white fade-in-up">Our Services</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
                     <h3 class="text-2xl font-semibold mb-3 text-accent-color">Custom Software</h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Tailored web and mobile solutions from idea to launch. We handle everything from the initial concept to deployment and ongoing support.
-                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Tailored web and mobile solutions from idea to launch. We handle everything from the initial concept to deployment and ongoing support.</p>
                 </div>
-                <!-- Service Card 2 -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center fade-in-up">
                     <h3 class="text-2xl font-semibold mb-3 text-accent-color">UI/UX & Prototyping</h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Modern, accessible interfaces with rapid iteration. We create intuitive designs that make your product stand out and feel natural.
-                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Modern, accessible interfaces with rapid iteration. We create intuitive designs that make your product stand out and feel natural.</p>
                 </div>
-                <!-- Service Card 3 -->
                 <div class="bg-gradient-to-br from-cyan-500 to-blue-600 p-8 rounded-xl shadow-lg text-center fade-in-up">
                     <h3 class="text-2xl font-semibold mb-3 text-white">AI Integration</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        Practical AI features integrated into existing products. From machine learning models to generative AI, we bring intelligent features to your software.
-                    </p>
+                    <p class="text-gray-200 leading-relaxed">Practical AI features integrated into existing products. From machine learning models to generative AI, we bring intelligent features to your software.</p>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="py-20 md:py-24">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Featured Project</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white fade-in-up">Featured Project</h2>
             <div class="max-w-6xl mx-auto md:flex fade-in-up">
-                <!-- Image Gallery -->
                 <div class="md:w-1/2 p-4">
-                    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
                         <img class="h-full w-full object-cover" src="musika/Screenshot_20250814-193711.png" alt="Main Musika App Screenshot">
                         <div class="grid grid-cols-2 gap-2 p-2">
                             <img src="musika/Screenshot_20250814-193723.png" alt="Musika App Thumbnail 1" class="rounded-lg object-cover">
@@ -172,57 +159,42 @@
                         </div>
                     </div>
                 </div>
-                <!-- Project Details -->
-                <div class="md:w-1/2 p-8 md:p-12 bg-gray-800 rounded-xl shadow-lg mt-8 md:mt-0">
+                <div class="md:w-1/2 p-8 md:p-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg mt-8 md:mt-0">
                     <div class="flex items-center mb-4">
                         <img src="musika/logo2.png" alt="Musika Logo" class="h-12 w-12 mr-4">
                         <h3 class="text-3xl font-bold text-accent-color">Musika</h3>
                     </div>
-                    <p class="text-gray-300 leading-relaxed mb-6">
-                        Offline-first mobile solution for vendors to manage inventory and sales without internet. Includes secure login, local storage, and optional cloud sync. This project demonstrates our focus on building robust solutions for real-world challenges.
-                    </p>
-                    <h4 class="text-2xl font-semibold mb-4 text-white">Key Features</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300 mb-8">
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">Offline-first mobile solution for vendors to manage inventory and sales without internet. Includes secure login, local storage, and optional cloud sync. This project demonstrates our focus on building robust solutions for real-world challenges.</p>
+                    <h4 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">Key Features</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300 mb-8">
                         <li>Offline-First Functionality</li>
                         <li>Secure On-Device Local Storage</li>
                         <li>Optional Cloud Sync & Backup</li>
                         <li>Simple Inventory Management</li>
                         <li>Real-time Sales Tracking</li>
                     </ul>
-                    <a href="#" class="bg-accent-color text-white font-semibold py-3 px-8 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">
-                        Learn More
-                    </a>
+                    <a href="#" class="bg-accent-color text-white font-semibold py-3 px-8 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">Learn More</a>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-24">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">Get in Touch</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white fade-in-up">Get in Touch</h2>
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
-                <!-- Phone & WhatsApp -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
                     <h3 class="text-2xl font-semibold mb-4 text-accent-color">Phone & WhatsApp</h3>
-                    <p class="text-lg font-mono mb-2">+263 785 629 957</p>
+                    <p class="text-lg font-mono mb-2 text-gray-600 dark:text-gray-300">+263 785 629 957</p>
                     <div class="flex space-x-4">
-                        <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-2 px-6 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">
-                            Call
-                        </a>
-                        <a href="https://wa.me/263785629957" class="border border-white text-white font-semibold py-2 px-6 rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300 btn-hover-effect">
-                            WhatsApp
-                        </a>
+                        <a href="tel:+263785629957" class="bg-accent-color text-white font-semibold py-2 px-6 rounded-xl hover:bg-opacity-80 transition-all duration-300 btn-hover-effect">Call</a>
+                        <a href="https://wa.me/263785629957" class="border border-gray-400 dark:border-white text-gray-800 dark:text-white font-semibold py-2 px-6 rounded-xl hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 btn-hover-effect">WhatsApp</a>
                     </div>
                 </div>
-                <!-- Email -->
-                <div class="bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg fade-in-up">
                     <h3 class="text-2xl font-semibold mb-4 text-accent-color">Email</h3>
                     <div class="space-y-2">
-                        <a href="mailto:diplovlogodesign@gmail.com" class="block text-lg font-mono text-gray-300 hover:text-white transition-colors duration-300">
-                            diplovlogodesign@gmail.com
-                        </a>
-                        <a href="mailto:xalosoftware@gmail.com" class="block text-lg font-mono text-gray-300 hover:text-white transition-colors duration-300">
-                            xalosoftware@gmail.com
-                        </a>
+                        <a href="mailto:diplovlogodesign@gmail.com" class="block text-lg font-mono text-gray-600 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">diplovlogodesign@gmail.com</a>
+                        <a href="mailto:xalosoftware@gmail.com" class="block text-lg font-mono text-gray-600 dark:text-gray-300 hover:text-accent-color dark:hover:text-accent-color transition-colors duration-300">xalosoftware@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -231,50 +203,39 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-700 pt-12 pb-8">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pt-12 pb-8">
         <div class="container mx-auto px-4 text-center">
-            <!-- Logo -->
             <div class="flex justify-center items-center mb-6">
                 <img src="logo.png" alt="Xalo Software Logo" class="h-10 w-10 mr-2">
-                <span class="text-xl font-semibold text-white">Xalo Software</span>
+                <span class="text-xl font-semibold text-gray-900 dark:text-white">Xalo Software</span>
             </div>
-            <!-- Footer Navigation -->
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-6 text-gray-300">
-                <a href="#home" class="hover:text-white transition-colors">Home</a>
-                <a href="#about-us" class="hover:text-white transition-colors">About Us</a>
-                <a href="#services" class="hover:text-white transition-colors">Services</a>
-                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-6 text-gray-600 dark:text-gray-300">
+                <a href="#home" class="hover:text-accent-color dark:hover:text-accent-color transition-colors">Home</a>
+                <a href="#about-us" class="hover:text-accent-color dark:hover:text-accent-color transition-colors">About Us</a>
+                <a href="#services" class="hover:text-accent-color dark:hover:text-accent-color transition-colors">Services</a>
+                <a href="#projects" class="hover:text-accent-color dark:hover:text-accent-color transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-accent-color dark:hover:text-accent-color transition-colors">Contact</a>
             </div>
-            <!-- Social Media Links -->
             <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-white transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
+                <a href="#" aria-label="Twitter" class="text-gray-500 dark:text-gray-400 hover:text-accent-color dark:hover:text-accent-color transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
+                <a href="#" aria-label="LinkedIn" class="text-gray-500 dark:text-gray-400 hover:text-accent-color dark:hover:text-accent-color transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
-                <a href="#" aria-label="GitHub" class="text-gray-400 hover:text-white transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
+                <a href="#" aria-label="GitHub" class="text-gray-500 dark:text-gray-400 hover:text-accent-color dark:hover:text-accent-color transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
             </div>
-            <!-- Copyright -->
-            <p class="text-gray-400 text-sm">&copy; 2025 Xalo Software. All rights reserved.</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">&copy; 2025 Xalo Software. All rights reserved.</p>
         </div>
     </footer>
     
-    <!-- JavaScript for smooth scrolling, animations, and mobile menu -->
     <script>
         // Mobile Menu Toggle
-        const btn = document.getElementById('menu-btn');
+        const menuBtn = document.getElementById('menu-btn');
         const menu = document.getElementById('menu');
-        btn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
 
@@ -282,15 +243,10 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                // If it's a mobile menu link, close the menu
-                if (menu.contains(this)) {
+                if (menu.classList.contains('block')) { // Corrected from contains('block') to avoid issues
                     menu.classList.add('hidden');
                 }
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -301,13 +257,33 @@
                     entry.target.classList.add('animate-on-scroll');
                 }
             });
-        }, {
-            threshold: 0.1 // Trigger animation when 10% of the element is visible
-        });
-
-        // Select all elements with the 'fade-in-up' class and observe them
+        }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in-up').forEach((el) => {
             observer.observe(el);
+        });
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', function() {
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
         });
     </script>
 </body>
