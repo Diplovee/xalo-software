@@ -243,7 +243,7 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                if (menu.classList.contains('block')) { // Corrected from contains('block') to avoid issues
+                if (menu.classList.contains('hidden') === false) {
                     menu.classList.add('hidden');
                 }
                 document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
@@ -265,24 +265,14 @@
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         themeToggleBtn.addEventListener('click', function() {
-            // if set via local storage previously
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            // if NOT set via local storage previously
+            const htmlEl = document.documentElement;
+            // Toggle the class and save the preference
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                htmlEl.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
             }
         });
     </script>
